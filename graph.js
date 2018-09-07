@@ -47,7 +47,6 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
 
 
 $(function(){
-
   var countup = function(){
     if(constEframe>nowframe){
       nowframe = nowframe + 1;
@@ -399,16 +398,17 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(sad[nowframe_num]).toFixed(1),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]).toFixed(1),"#neutral_val","#neutral_tr");
   meji=smile[nowframe_num]; //アノテーション用目印
+
 };
 
 function chk_thre(val,id,id_tr){
   $(id_tr).removeClass();
   if(val >= 20){
     $(id_tr).addClass('positive');
-  }else if(val == -10){
+  }else if(Number.isNaN(val)){
     $(id_tr).addClass('disabled');
   }
-  $(id).text(String(val));
+  $(id).text(String(val.toFixed(1)));
 }
 
 function set_chkbox2graph(){
