@@ -20,7 +20,6 @@ function image_sel(human,frame){
     NUM = zeroPadding(NUM, 6);
     var movie_url = "emodata/"+human+"/"+human+"_"+NUM+".jpg";
     video.src = movie_url;
-    console.log(movie_url);
   }
 }
 
@@ -151,7 +150,7 @@ $("#happy").prop('checked',false);
 $("#sad").prop('checked',false);
 $("#neutral").prop('checked',false);
 
-
+$("#mejirusi").hide();
 
 function plot_frame(){
   if( smile_chart ){
@@ -159,14 +158,17 @@ function plot_frame(){
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
+　//アノテーション用目印
+  if(meji>=0){
+    $("#mejirusi").show();
+  }else{
+    $("#mejirusi").hide();}
   }
 };
-
-
 });
 
 var canvas;
-
+var meji;
 var smile_chart;
 var browRaise_chart;
 var noseWrinkle_chart;
@@ -396,13 +398,14 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(happy[nowframe_num]).toFixed(1),"#happy_val","#happy_tr");
   chk_thre(parseFloat(sad[nowframe_num]).toFixed(1),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]).toFixed(1),"#neutral_val","#neutral_tr");
+  meji=smile[nowframe_num]; //アノテーション用目印
 };
 
 function chk_thre(val,id,id_tr){
   $(id_tr).removeClass();
   if(val >= 20){
     $(id_tr).addClass('positive');
-  }else if(val = -10){
+  }else if(val == -10){
     $(id_tr).addClass('disabled');
   }
   $(id).text(String(val));
@@ -490,8 +493,6 @@ function set_chkbox2graph(){
   smile_chart = new Chart(canvas, {
     type: 'line',  //グラフの種類
     data: smile_data,  //表示するデータ
-    datasets: [{
-      pointRadius: 0}],　//点の大きさ
       options: tmp_graph[1]	//オプション設定
     });
   };
