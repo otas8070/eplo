@@ -20,6 +20,7 @@ $(function(){
 $('#gt').change(function() {
   // 選択されているvalue属性値を取り出す
   sel_gt = $('#gt').val();
+
 });
 
 $('#siboru').on('click', function() {
