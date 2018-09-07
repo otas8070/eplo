@@ -8,6 +8,8 @@ var sel_gt="none";
 var sel_reason="none";
 var sel_result;
 
+var endo;
+
 $(function(){
 
   anno_csv_get();
