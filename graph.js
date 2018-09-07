@@ -66,6 +66,12 @@ $(function(){
     document.getElementById("search").style.visibility = 'visible';
   });
 
+  $('#letstart').click(function() {
+    $('.ui.sidebar').sidebar('toggle');
+    document.getElementById("gt").style.visibility = 'visible';
+    document.getElementById("search").style.visibility = 'visible';
+  });
+
   $('.ui.black.deny.button').click(function() {
     $('.ui.mini.modal')
     .modal('hide')
@@ -225,7 +231,7 @@ var sad = [];
 var neutral = [];
 
 var nowframe;
-var nowhuman;
+var nowhuman = "-1";
 var constSframe;
 var constEframe;
 
