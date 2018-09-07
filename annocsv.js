@@ -61,6 +61,7 @@ $('#search').html(html);
 });
 
 $('#search').change(function() {
+  $('.nowflur').dimmer('hide');
   console.log(sel_result[$('#search').val()]);
   //トヨタの感情AUのタグをvideoの下に表示する。
   need_au(sel_result[$('#search').val()]);
