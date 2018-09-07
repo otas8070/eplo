@@ -48,7 +48,6 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
 
 
 $(function(){
-
   var countup = function(){
     if(constEframe>nowframe){
       nowframe = nowframe + 1;
@@ -379,33 +378,33 @@ function plot_dmcdata(human,Start,End){
 };
 
 function set_lavel_data(nowframe_num){
-  chk_thre(parseFloat(smile[nowframe_num]).toFixed(1),"#smile_val","#smile_tr");
-  chk_thre(parseFloat(browRaise[nowframe_num]).toFixed(1),"#browRaise_val","#browRaise_tr");
-  chk_thre(parseFloat(noseWrinkle[nowframe_num]).toFixed(1),"#noseWrinkle_val","#noseWrinkle_tr");
-  chk_thre(parseFloat(upperLipRaise[nowframe_num]).toFixed(1),"#upperLipRaise_val","#upperLipRaise_tr");
-  chk_thre(parseFloat(mouseOpen[nowframe_num]).toFixed(1),"#mouseOpen_val","#mouseOpen_tr");
-  chk_thre(parseFloat(eyeClosure[nowframe_num]).toFixed(1),"#eyeClosure_val","#eyeClosure_tr");
-  chk_thre(parseFloat(cheekRaise[nowframe_num]).toFixed(1),"#cheekRaise_val","#cheekRaise_tr");
-  chk_thre(parseFloat(yawn[nowframe_num]).toFixed(1),"#yawn_val","#yawn_tr");
-  chk_thre(parseFloat(joy[nowframe_num]).toFixed(1),"#joy_val","#joy_tr");
-  chk_thre(parseFloat(anger[nowframe_num]).toFixed(1),"#anger_val","#anger_tr");
-  chk_thre(parseFloat(surprise[nowframe_num]).toFixed(1),"#surprise_val","#surprise_tr");
-  chk_thre(parseFloat(valence[nowframe_num]).toFixed(1),"#valence_val","#valence_tr");
-  chk_thre(parseFloat(disgust[nowframe_num]).toFixed(1),"#disgust_val","#disgust_tr");
-  chk_thre(parseFloat(fear[nowframe_num]).toFixed(1),"#fear_val","#fear_tr");
-  chk_thre(parseFloat(happy[nowframe_num]).toFixed(1),"#happy_val","#happy_tr");
-  chk_thre(parseFloat(sad[nowframe_num]).toFixed(1),"#sad_val","#sad_tr");
-  chk_thre(parseFloat(neutral[nowframe_num]).toFixed(1),"#neutral_val","#neutral_tr");
+  chk_thre(parseFloat(smile[nowframe_num]),"#smile_val","#smile_tr");
+  chk_thre(parseFloat(browRaise[nowframe_num]),"#browRaise_val","#browRaise_tr");
+  chk_thre(parseFloat(noseWrinkle[nowframe_num]),"#noseWrinkle_val","#noseWrinkle_tr");
+  chk_thre(parseFloat(upperLipRaise[nowframe_num]),"#upperLipRaise_val","#upperLipRaise_tr");
+  chk_thre(parseFloat(mouseOpen[nowframe_num]),"#mouseOpen_val","#mouseOpen_tr");
+  chk_thre(parseFloat(eyeClosure[nowframe_num]),"#eyeClosure_val","#eyeClosure_tr");
+  chk_thre(parseFloat(cheekRaise[nowframe_num]),"#cheekRaise_val","#cheekRaise_tr");
+  chk_thre(parseFloat(yawn[nowframe_num]),"#yawn_val","#yawn_tr");
+  chk_thre(parseFloat(joy[nowframe_num]),"#joy_val","#joy_tr");
+  chk_thre(parseFloat(anger[nowframe_num]),"#anger_val","#anger_tr");
+  chk_thre(parseFloat(surprise[nowframe_num]),"#surprise_val","#surprise_tr");
+  chk_thre(parseFloat(valence[nowframe_num]),"#valence_val","#valence_tr");
+  chk_thre(parseFloat(disgust[nowframe_num]),"#disgust_val","#disgust_tr");
+  chk_thre(parseFloat(fear[nowframe_num]),"#fear_val","#fear_tr");
+  chk_thre(parseFloat(happy[nowframe_num]),"#happy_val","#happy_tr");
+  chk_thre(parseFloat(sad[nowframe_num]),"#sad_val","#sad_tr");
+  chk_thre(parseFloat(neutral[nowframe_num]),"#neutral_val","#neutral_tr");
 };
 
 function chk_thre(val,id,id_tr){
   $(id_tr).removeClass();
   if(val >= 20){
     $(id_tr).addClass('positive');
-  }else if(val = -10){
+  }else if(Number.isNaN(val)){
     $(id_tr).addClass('disabled');
   }
-  $(id).text(String(val));
+  $(id).text(String(val.toFixed(1)));
 }
 
 function set_chkbox2graph(){
