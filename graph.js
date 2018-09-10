@@ -47,6 +47,24 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
 
 
 $(function(){
+  $("#sm").click(function(){set_chkbox2graph();});
+  $("#bR").click(function(){set_chkbox2graph();});
+  $("#nW").click(function(){set_chkbox2graph();});
+  $("#uL").click(function(){set_chkbox2graph();});
+  $("#mO").click(function(){set_chkbox2graph();});
+  $("#eC").click(function(){set_chkbox2graph();});
+  $("#cR").click(function(){set_chkbox2graph();});
+  $("#yw").click(function(){set_chkbox2graph();});
+  $("#joy").click(function(){set_chkbox2graph();});
+  $("#anger").click(function(){set_chkbox2graph();});
+  $("#surprise").click(function(){set_chkbox2graph();});
+  $("#valence").click(function(){set_chkbox2graph();});
+  $("#disgust").click(function(){set_chkbox2graph();});
+  $("#fear").click(function(){set_chkbox2graph();});
+  $("#happy").click(function(){set_chkbox2graph();});
+  $("#sad").click(function(){set_chkbox2graph();});
+  $("#neutral").click(function(){set_chkbox2graph();});
+
   var countup = function(){
     if(constEframe>nowframe){
       nowframe = nowframe + 1;
@@ -164,6 +182,7 @@ function plot_frame(){
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
+
 　//アノテーション用目印
   if(meji>=0){
     $("#mejirusi").show();
@@ -358,24 +377,6 @@ function plot_dmcdata(human,Start,End){
       options: tmp_graph[1]	//オプション設定
     });
 
-    $("#sm").click(function(){set_chkbox2graph();});
-    $("#bR").click(function(){set_chkbox2graph();});
-    $("#nW").click(function(){set_chkbox2graph();});
-    $("#uL").click(function(){set_chkbox2graph();});
-    $("#mO").click(function(){set_chkbox2graph();});
-    $("#eC").click(function(){set_chkbox2graph();});
-    $("#cR").click(function(){set_chkbox2graph();});
-    $("#yw").click(function(){set_chkbox2graph();});
-    $("#joy").click(function(){set_chkbox2graph();});
-    $("#anger").click(function(){set_chkbox2graph();});
-    $("#surprise").click(function(){set_chkbox2graph();});
-    $("#valence").click(function(){set_chkbox2graph();});
-    $("#disgust").click(function(){set_chkbox2graph();});
-    $("#fear").click(function(){set_chkbox2graph();});
-    $("#happy").click(function(){set_chkbox2graph();});
-    $("#sad").click(function(){set_chkbox2graph();});
-    $("#neutral").click(function(){set_chkbox2graph();});
-
 
     console.log(sel_result);
     image_sel(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"]);
@@ -385,6 +386,20 @@ function plot_dmcdata(human,Start,End){
     constEframe = sel_result[$('#search').val()]["End"];
     nowhuman = sel_result[$('#search').val()]["human"];
     set_lavel_data(nowframe - constSframe);
+
+    canvas.addEventListener('click', function(event) {
+      let item = smile_chart.getElementAtEvent(event);
+
+      if (item.length == 0) {
+        console.log('no element found.')
+        return;
+      }
+
+      item = item[0];
+      let data = item._index;
+      alert(data);
+      console.log(item);
+    });
 
   });
   xhr.send();
@@ -504,6 +519,7 @@ function set_chkbox2graph(){
   smile_chart = new Chart(canvas, {
     type: 'line',  //グラフの種類
     data: smile_data,  //表示するデータ
-      options: tmp_graph[1]	//オプション設定
-    });
-  };
+    options: tmp_graph[1]	//オプション設定
+  });
+
+};
