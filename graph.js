@@ -174,6 +174,7 @@ $("#sad").prop('checked',false);
 $("#neutral").prop('checked',false);
 
 $("#mejirusi").hide();
+$("#waku").hide();
 
 function plot_frame(){
   if( smile_chart ){
@@ -181,12 +182,16 @@ function plot_frame(){
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
-    //アノテーション用目印
-    if(meji>=0){
-      $("#mejirusi").show();
-    }else{
-      $("#mejirusi").hide();
-    }
+
+　//アノテーション用目印
+  if(meji>=0){
+    $("#mejirusi").show();
+    $("#waku").show();
+    var waku_he = $('#oneshot').height();
+    $('#waku').outerHeight(waku_he);
+  }else{
+    $("#mejirusi").hide();
+    $("#waku").hide();}
   }
 };
 });
