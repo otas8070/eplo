@@ -156,6 +156,7 @@ $("#sad").prop('checked',false);
 $("#neutral").prop('checked',false);
 
 $("#mejirusi").hide();
+$("#waku").hide();
 
 function plot_frame(){
   if( smile_chart ){
@@ -166,8 +167,12 @@ function plot_frame(){
 　//アノテーション用目印
   if(meji>=0){
     $("#mejirusi").show();
+    $("#waku").show();
+    var waku_he = $('#oneshot').height();
+    $('#waku').outerHeight(waku_he);
   }else{
-    $("#mejirusi").hide();}
+    $("#mejirusi").hide();
+    $("#waku").hide();}
   }
 };
 });
