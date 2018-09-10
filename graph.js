@@ -30,6 +30,7 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
     var chart = this.chart;
     var ctx = chart.chart.ctx;
     var index = chart.config.data.lineAtIndex;
+    var index2 = chart.config.data.lineAtIndex2;
     if (index){
       var xaxis = chart.scales['x-axis-0'];
       var yaxis = chart.scales['y-axis-0'];
@@ -39,6 +40,18 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
       ctx.strokeStyle = '#ff0000';
       ctx.lineWidth = 1;
       ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+      ctx.stroke();
+      ctx.restore();
+    }
+    if (index2){
+      var xaxis = chart.scales['x-axis-0'];
+      var yaxis = chart.scales['y-axis-0'];
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(xaxis.getPixelForValue(undefined, index2), yaxis.top);
+      ctx.strokeStyle = '#00ff00';
+      ctx.lineWidth = 1;
+      ctx.lineTo(xaxis.getPixelForValue(undefined, index2), yaxis.bottom);
       ctx.stroke();
       ctx.restore();
     }
@@ -180,11 +193,12 @@ function plot_frame(){
   if( smile_chart ){
     // 垂直線の描画
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
+    smile_data.lineAtIndex2 = meji;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
 
 　//アノテーション用目印
-  if(meji>=0){
+  if((nowframe - constSframe) == meji){
     $("#mejirusi").show();
     $("#waku").show();
     var waku_he = $('#oneshot').height();
@@ -391,14 +405,21 @@ function plot_dmcdata(human,Start,End){
       let item = smile_chart.getElementAtEvent(event);
 
       if (item.length == 0) {
+        smile_chart.scale.selectedIndex = smile_chart.datasets[0].points.indexOf(points[0])
+        smile_chart.update();
         console.log('no element found.')
         return;
       }
 
       item = item[0];
       let data = item._index;
+      meji = item._index;
       alert(data);
       console.log(item);
+      smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
+      smile_data.lineAtIndex2 = meji;
+      smile_chart.update();
+
     });
 
   });
@@ -423,7 +444,6 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(happy[nowframe_num]),"#happy_val","#happy_tr");
   chk_thre(parseFloat(sad[nowframe_num]),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]),"#neutral_val","#neutral_tr");
-  meji=smile[nowframe_num]; //アノテーション用目印
 
 };
 
@@ -507,7 +527,6 @@ function set_chkbox2graph(){
   if($("#neutral").prop("checked")){
     datagraph = make_dataset(datagraph,neutral,"rgba(50,255,18,1.0)","neutral");
   }
-
 
 
   //描画
