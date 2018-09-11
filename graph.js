@@ -197,17 +197,17 @@ function plot_frame(){
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
 
-　//アノテーション用目印
-  if((nowframe - constSframe) == meji){
-    $("#mejirusi").show();
-    $("#waku").show();
-    var waku_he = $('#oneshot').height();
-    $('#waku').outerHeight(waku_he);
-  }else{
-    $("#mejirusi").hide();
-    $("#waku").hide();}
-  }
-};
+    //アノテーション用目印
+    if((nowframe - constSframe) == meji){
+      $("#mejirusi").show();
+      $("#waku").show();
+      var waku_he = $('#oneshot').height();
+      $('#waku').outerHeight(waku_he);
+    }else{
+      $("#mejirusi").hide();
+      $("#waku").hide();}
+    }
+  };
 });
 
 var canvas;
@@ -414,7 +414,6 @@ function plot_dmcdata(human,Start,End){
       item = item[0];
       let data = item._index;
       meji = item._index;
-      alert(data);
       console.log(item);
       smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
       smile_data.lineAtIndex2 = meji;
