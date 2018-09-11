@@ -196,24 +196,29 @@ function plot_frame(){
     // 垂直線の描画
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
     smile_data.lineAtIndex2 = meji;
+    meji_Hi = meji + 1;
+    meji_Low = meji - 1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
 
-    //アノテーション用目印
-    if((nowframe - constSframe) == meji){
-      $("#mejirusi").show();
-      $("#waku").show();
-      var waku_he = $('#oneshot').height();
-      $('#waku').outerHeight(waku_he);
-    }else{
-      $("#mejirusi").hide();
-      $("#waku").hide();}
-    }
-  };
+
+　//アノテーション用目印
+  if((nowframe - constSframe) <= meji_Hi&&(nowframe - constSframe) >= meji_Low){
+    $("#mejirusi").show();
+    $("#waku").show();
+    var waku_he = $('#oneshot').height();
+    $('#waku').outerHeight(waku_he);
+  }else{
+    $("#mejirusi").hide();
+    $("#waku").hide();}
+  }
+};
 });
 
 var canvas;
 var meji;
+var meji_Hi;
+var meji_Low;
 var smile_chart;
 var browRaise_chart;
 var noseWrinkle_chart;
@@ -423,6 +428,8 @@ function plot_dmcdata(human,Start,End){
       console.log(item);
       smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
       smile_data.lineAtIndex2 = meji;
+      meji_Hi = meji + 1;
+      meji_Low = meji - 1;
       smile_chart.update();
 
     });
@@ -450,7 +457,6 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(happy[nowframe_num]),"#happy_val","#happy_tr");
   chk_thre(parseFloat(sad[nowframe_num]),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]),"#neutral_val","#neutral_tr");
-
 };
 
 function chk_thre(val,id,id_tr){
