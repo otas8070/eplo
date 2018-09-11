@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="emo_js/jquery-ui-1.10.4.custom.min.css">
 
   <title>e_plotter</title>
-  <link rel="shortcut icon" href="img/517aa22a18c564cc08a101f2274a44c2_xxo.ico"/>
+  <link rel="shortcut icon" href="img/emotion.ico"/>
 </head>
 
 <body style="min-width:1300px;height:auto; background:white !important;">
@@ -128,24 +128,20 @@
                 <div id="waku" style="position:absolute; border:solid 5px #ff0000; top:0px;width:100%;"></div>
               </div>
               <!-------------------------info枠表示--------------------------------->
-              <div class="ui grid">
-                <div id="laveltag" class="eight wide column" style="margin-top:5px;">
-                  <!-------------------------video名表示--------------------------------->
-                  <div id="videoname" class="ui blue center label">Video</div>
-                  <div id="dname" class="ui blue left floated label">DLV</div>
-                </div>
+              <div class="ui grid" style="margin-left:0px;margin-right:0px;">
+
                 <!-------------------------コマ送りボタン表示--------------------------------->
-                <div class="eight wide column">
-                  <div class="ui buttons">
-                    <button class="ui icon button" id="neutral_show">
-                      <i class="child icon"></i>
-                    </button>
-                  </div>
+                <div class="sixteen wide column" style="padding-bottom: 4px;background: black;padding-top: 0;">
                   <div class="ui buttons">
                     <button class="ui icon button" id="play">
                       <i class="play icon"></i>
                     </button>
                     <button id="pose" class="ui icon button"　><i class="pause icon"></i></button>
+                  </div>
+                  <div class="ui buttons">
+                    <button class="ui icon button" id="neutral_show">
+                      <i class="child icon"></i>
+                    </button>
                   </div>
                   <div class="ui buttons right floated">
                     <button class="ui icon button" id="return">
@@ -156,6 +152,20 @@
                     </button>
                     <button id="fast" class="ui icon button"　><i class="angle double right icon"></i></button>
                   </div>
+                </div>
+                <div class="sixteen wide column" style="padding-left: 6px;padding-right: 6px;padding-bottom: 0;">
+                  <h2 class="ui header">
+                    <div id="title_name" class="content">
+                      Title
+                      <div class="sub header">movie info</div>
+                    </div>
+                  </h2>
+                  <hr color="#f0f0f0">
+                </div>
+                <div id="laveltag" class="sixteen wide column" style="padding-top: 0;">
+                  <!-------------------------video名表示--------------------------------->
+                  <div id="videoname" class="ui blue center label">Video</div>
+                  <div id="dname" class="ui blue left floated label">DLV</div>
                 </div>
               </div>
             </div>
@@ -390,154 +400,8 @@
         </div>
       </div>
     </div>
-    <!-------------------------modal表示--------------------------------->
-    <div id="3dmodal" class="ui mini modal">
-      <div class="content">
-        <p>kaigan graph setup</p>
-      </div>
-      <div class="actions">
-        <div class="ui center aligned grid">
-          <div class="column">
-            <div><label><font size="2" face="fantasy">MAX</font></label>
-              <input id="Spinner1"></input></div><br>
-              <div><label><font size="2" face="fantasy">MIN</font></label>
-                <input id="Spinner2"></input></div><br>
-                <div class="ui black deny button">Close</div>
-                <div class="ui positive icon button" id="in" value="" >Update</div>
-              </div>
-            </div>
-          </div>
-        </div>
+  </div>
+</div>
 
-        <div id="yomodal" class="ui mini modal">
-          <div class="content">
-            <p>yo graph setup</p>
-          </div>
-          <div class="actions">
-            <div class="ui center aligned grid">
-              <div class="column">
-                <div><label><font size="2" face="fantasy">MAX</font></label>
-                  <input id="yoSpinner1"></input></div><br>
-                  <div><label><font size="2" face="fantasy">MIN</font></label>
-                    <input id="yoSpinner2"></input></div><br>
-                    <div class="ui black deny button">Close</div>
-                    <div class="ui positive icon button" id="yoin" value="" >Update</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="picimodal" class="ui mini modal">
-              <div class="content">
-                <p>pici graph setup</p>
-              </div>
-              <div class="actions">
-                <div class="ui center aligned grid">
-                  <div class="column">
-                    <div><label><font size="2" face="fantasy">MAX</font></label>
-                      <input id="piciSpinner1"></input></div><br>
-                      <div><label><font size="2" face="fantasy">MIN</font></label>
-                        <input id="piciSpinner2"></input></div><br>
-                        <div class="ui black deny button">Close</div>
-                        <div class="ui positive icon button" id="piciin" value="" >Update</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="rollmodal" class="ui mini modal">
-                  <div class="content">
-                    <p>roll graph setup</p>
-                  </div>
-                  <div class="actions">
-                    <div class="ui center aligned grid">
-                      <div class="column">
-                        <div><label><font size="2" face="fantasy">MAX</font></label>
-                          <input id="rollSpinner1"></input></div><br>
-                          <div><label><font size="2" face="fantasy">MIN</font></label>
-                            <input id="rollSpinner2"></input></div><br>
-                            <div class="ui black deny button">Close</div>
-                            <div class="ui positive icon button" id="rollin" value="" >Update</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div id="yokomodal" class="ui mini modal">
-                      <div class="content">
-                        <p>yoko graph setup</p>
-                      </div>
-                      <div class="actions">
-                        <div class="ui center aligned grid">
-                          <div class="column">
-                            <div><label><font size="2" face="fantasy">MAX</font></label>
-                              <input id="yokoSpinner1"></input></div><br>
-                              <div><label><font size="2" face="fantasy">MIN</font></label>
-                                <input id="yokoSpinner2"></input></div><br>
-                                <div class="ui black deny button">Close</div>
-                                <div class="ui positive icon button" id="yokoin" value="" >Update</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div id="tatemodal" class="ui mini modal">
-                          <div class="content">
-                            <p>tate graph setup</p>
-                          </div>
-                          <div class="actions">
-                            <div class="ui center aligned grid">
-                              <div class="column">
-                                <div><label><font size="2" face="fantasy">MAX</font></label>
-                                  <input id="tateSpinner1"></input></div><br>
-                                  <div><label><font size="2" face="fantasy">MIN</font></label>
-                                    <input id="tateSpinner2"></input></div><br>
-                                    <div class="ui black deny button">Close</div>
-                                    <div class="ui positive icon button" id="tatein" value="" >Update</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div id="okumodal" class="ui mini modal">
-                              <div class="content">
-                                <p>oku graph setup</p>
-                              </div>
-                              <div class="actions">
-                                <div class="ui center aligned grid">
-                                  <div class="column">
-                                    <div><label><font size="2" face="fantasy">MAX</font></label>
-                                      <input id="okuSpinner1"></input></div><br>
-                                      <div><label><font size="2" face="fantasy">MIN</font></label>
-                                        <input id="okuSpinner2"></input></div><br>
-                                        <div class="ui black deny button">Close</div>
-                                        <div class="ui positive icon button" id="okuin" value="" >Update</div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div id="kutimodal" class="ui mini modal">
-                                  <div class="content">
-                                    <p>kuti graph setup</p>
-                                  </div>
-                                  <div class="actions">
-                                    <div class="ui center aligned grid">
-                                      <div class="column">
-                                        <div><label><font size="2" face="fantasy">MAX</font></label>
-                                          <input id="kutiSpinner1"></input></div><br>
-                                          <div><label><font size="2" face="fantasy">MIN</font></label>
-                                            <input id="kutiSpinner2"></input></div><br>
-                                            <div class="ui black deny button">Close</div>
-                                            <div class="ui positive icon button" id="kutiin" value="" >Update</div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <script>
-
-
-                                    </script>
-                                  </body>
-                                  </html>
+  </body>
+  </html>
