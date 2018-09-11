@@ -363,8 +363,6 @@ function plot_dmcdata(human,Start,End){
     sad = [];
     neutral = [];
 
-
-
     for(var i in photoList){
       frame.push(photoList[i]["frame"]);
       smile.push(photoList[i]["smile"]);
@@ -405,7 +403,6 @@ function plot_dmcdata(human,Start,End){
 
     console.log(sel_result);
     image_sel(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"]);
-    //movie_sel(sel_result[$('#search').val()]["video"],sel_result[$('#search').val()]["Chapter"],sel_result[$('#search').val()]["GT"]);
     nowframe = parseInt(sel_result[$('#search').val()]["Start"]);
     constSframe = nowframe;
     constEframe = sel_result[$('#search').val()]["End"];
@@ -414,14 +411,12 @@ function plot_dmcdata(human,Start,End){
 
     canvas.addEventListener('click', function(event) {
       let item = smile_chart.getElementAtEvent(event);
-
       if (item.length == 0) {
         smile_chart.scale.selectedIndex = smile_chart.datasets[0].points.indexOf(points[0])
         smile_chart.update();
         console.log('no element found.')
         return;
       }
-
       item = item[0];
       let data = item._index;
       meji = item._index;
@@ -431,7 +426,6 @@ function plot_dmcdata(human,Start,End){
       meji_Hi = meji + 1;
       meji_Low = meji - 1;
       smile_chart.update();
-
     });
 
   });
