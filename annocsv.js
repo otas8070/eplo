@@ -65,10 +65,11 @@ $('#search').change(function() {
   console.log(sel_result[$('#search').val()]);
   //トヨタの感情AUのタグをvideoの下に表示する。
   need_au(sel_result[$('#search').val()]);
+  //名前を書く
+  var title_name = sel_result[$('#search').val()]["Movie"]+'<div class="sub header">'+sel_result[$('#search').val()]["FaceAction"]+'  '+sel_result[$('#search').val()]["Start"]+'-'+sel_result[$('#search').val()]["End"]+'</div>';
+  $("#title_name").html(title_name);
   //グラフを描画する
   plot_dmcdata(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"],sel_result[$('#search').val()]["End"]);
-  //document.getElementById('videoname').innerHTML = sel_result[$('#search').val()]["FaceAction"];
-  //document.getElementById('dname').innerHTML = sel_result[$('#search').val()]["Movie"];
 });
 });
 
