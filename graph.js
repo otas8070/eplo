@@ -62,6 +62,7 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
 $(function(){
   $("#sm").click(function(){set_chkbox2graph();});
   $("#bR").click(function(){set_chkbox2graph();});
+  $("#bF").click(function(){set_chkbox2graph();});
   $("#nW").click(function(){set_chkbox2graph();});
   $("#uL").click(function(){set_chkbox2graph();});
   $("#mO").click(function(){set_chkbox2graph();});
@@ -170,6 +171,7 @@ $('#autoplay').click(function(){
 
 $("#sm").prop('checked',true);
 $("#bR").prop('checked',false);
+$("#bF").prop('checked',false);
 $("#nW").prop('checked',false);
 $("#uL").prop('checked',false);
 $("#mO").prop('checked',false);
@@ -232,6 +234,7 @@ var neutral_chart;
 
 var smile_data;
 var browRaise_data;
+var browFurrow_data;
 var noseWrinkle_data;
 var upperLipRaise_data;
 var mouseOpen_data;
@@ -252,6 +255,7 @@ var neutral_data;
 var frame = [];
 var smile = [];
 var browRaise = [];
+var browFurrow = [];
 var noseWrinkle = [];
 var upperLipRaise = [];
 var mouseOpen = [];
@@ -337,6 +341,7 @@ function plot_dmcdata(human,Start,End){
     frame = [];
     smile = [];
     browRaise = [];
+    browFurrow = [];
     noseWrinkle = [];
     upperLipRaise = [];
     mouseOpen = [];
@@ -359,6 +364,7 @@ function plot_dmcdata(human,Start,End){
       frame.push(photoList[i]["frame"]);
       smile.push(photoList[i]["smile"]);
       browRaise.push(photoList[i]["browRaise"]);
+      browFurrow.push(photoList[i]["browFurrow"]);
       noseWrinkle.push(photoList[i]["noseWrinkle"]);
       upperLipRaise.push(photoList[i]["upperLipRaise"]);
       mouseOpen.push(photoList[i]["mouseOpen"]);
@@ -429,6 +435,7 @@ function plot_dmcdata(human,Start,End){
 function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(smile[nowframe_num]),"#smile_val","#smile_tr");
   chk_thre(parseFloat(browRaise[nowframe_num]),"#browRaise_val","#browRaise_tr");
+  chk_thre(parseFloat(browFurrow[nowframe_num]),"#browFurrow_val","#browFurrow_tr");
   chk_thre(parseFloat(noseWrinkle[nowframe_num]),"#noseWrinkle_val","#noseWrinkle_tr");
   chk_thre(parseFloat(upperLipRaise[nowframe_num]),"#upperLipRaise_val","#upperLipRaise_tr");
   chk_thre(parseFloat(mouseOpen[nowframe_num]),"#mouseOpen_val","#mouseOpen_tr");
@@ -466,6 +473,10 @@ function set_chkbox2graph(){
   //--------------browRaise---------------
   if($("#bR").prop("checked")){
     datagraph = make_dataset(datagraph,browRaise,"rgba(126,83,34,1.0)","browRaise");
+  }
+  //--------------browFurrow---------------
+  if($("#bF").prop("checked")){
+    datagraph = make_dataset(datagraph,browFurrow,"rgba(200,83,200,1.0)","browFurrow");
   }
   //--------------noseWrinkle---------------
   if($("#nW").prop("checked")){
