@@ -69,7 +69,7 @@ $('#search').change(function() {
   var title_name = sel_result[$('#search').val()]["Movie"]+'<div class="sub header">'+sel_result[$('#search').val()]["FaceAction"]+'  '+sel_result[$('#search').val()]["Start"]+'-'+sel_result[$('#search').val()]["End"]+'</div>';
   $("#title_name").html(title_name);
   //グラフを描画する
-  plot_dmcdata(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"],sel_result[$('#search').val()]["End"]);
+  plot_dmcdata(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"],sel_result[$('#search').val()]["End"],0);
 });
 });
 
