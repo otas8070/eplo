@@ -190,6 +190,7 @@ $("#neutral").prop('checked',false);
 
 $("#mejirusi").hide();
 $("#waku").hide();
+});
 
 function plot_frame(){
   if( smile_chart ){
@@ -200,7 +201,6 @@ function plot_frame(){
     meji_Low = meji - 1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
-
 
 　//アノテーション用目印
   if((nowframe - constSframe) <= meji_Hi&&(nowframe - constSframe) >= meji_Low){
@@ -213,7 +213,6 @@ function plot_frame(){
     $("#waku").hide();}
   }
 };
-});
 
 var canvas;
 var meji;
@@ -332,13 +331,12 @@ function make_dataset(datasets,data,color,label){
 }
 
 
-function plot_dmcdata(human,Start,End){
+function plot_dmcdata(human,Start,End,Frag){
   var xhr = new XMLHttpRequest();
   ///api/emograph/:csv/:startframe/:endframe
   console.log("http://localhost:3000/api/emograph/"+human+".csv/"+Start+"/"+End);
   xhr.open("GET","http://localhost:3000/api/emograph/"+human+".csv/"+Start+"/"+End);
   xhr.addEventListener("load", function(e){
-
 
     var photoList = JSON.parse(xhr.responseText);
     console.log(photoList);
@@ -400,14 +398,21 @@ function plot_dmcdata(human,Start,End){
       options: tmp_graph[1]	//オプション設定
     });
 
-
-    console.log(sel_result);
-    image_sel(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"]);
-    nowframe = parseInt(sel_result[$('#search').val()]["Start"]);
-    constSframe = nowframe;
-    constEframe = sel_result[$('#search').val()]["End"];
-    nowhuman = sel_result[$('#search').val()]["human"];
+    image_sel(human,Start);
+    constSframe = Start;
+    constEframe = End;
+    nowframe = parseInt(Start);
+    nowhuman = human;
     set_lavel_data(nowframe - constSframe);
+
+    if(Frag==1){
+      nowframe=parseInt(arg.now);
+      constSframe=parseInt(arg.Start);
+      constEframe=parseInt(arg.End);
+      nowhuman=parseInt(arg.human);
+      image_sel(arg.human,arg.now);
+      plot_frame();
+    }
 
     canvas.addEventListener('click', function(event) {
       let item = smile_chart.getElementAtEvent(event);
