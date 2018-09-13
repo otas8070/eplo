@@ -12,11 +12,11 @@ $(function(){
   //URL変更時にイベント
   $('.nowflur').dimmer('hide');
   //dimmerの削除
-  plot_dmcdata(arg.human,arg.Start,arg.End,1);
-  //plot_dmcdata2(arg.human2,arg.Start2,arg.End2,1);
+  plot_dmcdata(arg.human1,arg.start1,arg.end1,1);
+  plot_dmcdata2(arg.human2,arg.start2,arg.end2,1);
   //画像、グラフの描写
 })
 
-if(arg.now){
+if(arg.now1){
 $(window).hashchange();}
 });
