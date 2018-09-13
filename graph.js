@@ -190,30 +190,34 @@ $("#neutral").prop('checked',false);
 
 $("#mejirusi").hide();
 $("#waku").hide();
+});
 
 function plot_frame(){
   if( smile_chart ){
     // 垂直線の描画
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
     smile_data.lineAtIndex2 = meji;
+    meji_Hi = meji + 1;
+    meji_Low = meji - 1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
 
-    //アノテーション用目印
-    if((nowframe - constSframe) == meji){
-      $("#mejirusi").show();
-      $("#waku").show();
-      var waku_he = $('#oneshot').height();
-      $('#waku').outerHeight(waku_he);
-    }else{
-      $("#mejirusi").hide();
-      $("#waku").hide();}
-    }
-  };
-});
+　//アノテーション用目印
+  if((nowframe - constSframe) <= meji_Hi&&(nowframe - constSframe) >= meji_Low){
+    $("#mejirusi").show();
+    $("#waku").show();
+    var waku_he = $('#oneshot').height();
+    $('#waku').outerHeight(waku_he);
+  }else{
+    $("#mejirusi").hide();
+    $("#waku").hide();}
+  }
+};
 
 var canvas;
 var meji;
+var meji_Hi;
+var meji_Low;
 var smile_chart;
 var browRaise_chart;
 var noseWrinkle_chart;
@@ -327,13 +331,12 @@ function make_dataset(datasets,data,color,label){
 }
 
 
-function plot_dmcdata(human,Start,End){
+function plot_dmcdata(human,Start,End,Frag){
   var xhr = new XMLHttpRequest();
   ///api/emograph/:csv/:startframe/:endframe
   console.log("http://localhost:3000/api/emograph/"+human+".csv/"+Start+"/"+End);
   xhr.open("GET","http://localhost:3000/api/emograph/"+human+".csv/"+Start+"/"+End);
   xhr.addEventListener("load", function(e){
-
 
     var photoList = JSON.parse(xhr.responseText);
     console.log(photoList);
@@ -395,14 +398,21 @@ function plot_dmcdata(human,Start,End){
       options: tmp_graph[1]	//オプション設定
     });
 
-
-    console.log(sel_result);
-    image_sel(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"]);
-    nowframe = parseInt(sel_result[$('#search').val()]["Start"]);
-    constSframe = nowframe;
-    constEframe = sel_result[$('#search').val()]["End"];
-    nowhuman = sel_result[$('#search').val()]["human"];
+    image_sel(human,Start);
+    constSframe = Start;
+    constEframe = End;
+    nowframe = parseInt(Start);
+    nowhuman = human;
     set_lavel_data(nowframe - constSframe);
+
+    if(Frag==1){
+      nowframe=parseInt(arg.now);
+      constSframe=parseInt(arg.Start);
+      constEframe=parseInt(arg.End);
+      nowhuman=parseInt(arg.human);
+      image_sel(arg.human,arg.now);
+      plot_frame();
+    }
 
     canvas.addEventListener('click', function(event) {
       let item = smile_chart.getElementAtEvent(event);
@@ -418,6 +428,8 @@ function plot_dmcdata(human,Start,End){
       console.log(item);
       smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
       smile_data.lineAtIndex2 = meji;
+      meji_Hi = meji + 1;
+      meji_Low = meji - 1;
       smile_chart.update();
     });
 
@@ -444,7 +456,6 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(happy[nowframe_num]),"#happy_val","#happy_tr");
   chk_thre(parseFloat(sad[nowframe_num]),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]),"#neutral_val","#neutral_tr");
-
 };
 
 function chk_thre(val,id,id_tr){
