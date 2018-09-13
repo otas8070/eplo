@@ -15,62 +15,50 @@ $(function(){
   anno_csv_get();
   /*$('#video').change(function() {
   // 選択されているvalue属性値を取り出す
-  sel_video = $('#video').val();
-});*/
-$('#gt').change(function() {
-  // 選択されているvalue属性値を取り出す
-  sel_gt = $('#gt').val();
+  sel_video = $('#video').val();*/
+  $('#gt').change(function() {
+    // 選択されているvalue属性値を取り出す
+    sel_gt = $('#gt').val();
 
-});
+  });
 
-$('#siboru').on('click', function() {
-  var choice = annocsv;
-  //GT
-  if(sel_gt=="none"){
-    var choice_gt = choice;
-  }else{
-    var choice_gt = [];
-    for(var i in choice){
-      if(choice[i]["FaceAction"]===sel_gt){
-        choice_gt.push(choice[i]);
+  $('#siboru').on('click', function() {
+    var choice = annocsv;
+    //GT
+    if(sel_gt=="none"){
+      var choice_gt = choice;
+    }else{
+      var choice_gt = [];
+      for(var i in choice){
+        if(choice[i]["FaceAction"]===sel_gt){
+          choice_gt.push(choice[i]);
+        }
       }
     }
-  }
-  /*
-  if(sel_video=="none"){
-  var choice_video = choice_gt;
-}else{
-var choice_video = [];
-for(var i in choice_gt){
-if(choice_gt[i]["Movie"]===sel_video){
-choice_video.push(choice_gt[i]);
-}
-}
-}*/
-sel_result = choice_gt;
 
-//search
-var html = '<option value="none">選択してくださいね</option>';
-for(var i in sel_result){
-  if(i<200){
-    html = html + '<option value="'+i+'">'+sel_result[i]['Movie']+'</option>';
-  }
-}
-$('#search').html(html);
+    sel_result = choice_gt;
 
-});
+    //search
+    var html = '<option value="none">選択してくださいね</option>';
+    for(var i in sel_result){
+      if(i<200){
+        html = html + '<option value="'+i+'">'+sel_result[i]['Movie']+'</option>';
+      }
+    }
+    $('#search').html(html);
+  });
 
-$('#search').change(function() {
-  $('.nowflur').dimmer('hide');
-  console.log(sel_result[$('#search').val()]);
-  //トヨタの感情AUのタグをvideoの下に表示する。
-  need_au(sel_result[$('#search').val()]);
-  //名前を書く
-  var title_name = sel_result[$('#search').val()]["Movie"]+'<div class="sub header">'+sel_result[$('#search').val()]["FaceAction"]+'  '+sel_result[$('#search').val()]["Start"]+'-'+sel_result[$('#search').val()]["End"]+'</div>';
-  $("#title_name").html(title_name);
-  //グラフを描画する
-  plot_dmcdata(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"],sel_result[$('#search').val()]["End"],0);
-});
+  $('#search').change(function() {
+    $('.nowflur').dimmer('hide');
+    console.log(sel_result[$('#search').val()]);
+    //トヨタの感情AUのタグをvideoの下に表示する。
+    need_au(sel_result[$('#search').val()]);
+    //名前を書く
+    var title_name = sel_result[$('#search').val()]["Movie"]+'<div class="sub header">'+sel_result[$('#search').val()]["FaceAction"]+'  '+sel_result[$('#search').val()]["Start"]+'-'+sel_result[$('#search').val()]["End"]+'</div>';
+    $("#title_name").html(title_name);
+    //グラフを描画する
+    plot_dmcdata(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"],sel_result[$('#search').val()]["End"]);
+  });
 });
 
 
@@ -109,20 +97,13 @@ function anno_csv_get(){
       Start.push(annocsv[i]["Start"]);
       End.push(annocsv[i]["End"]);
     }
+    FaceAction = FaceAction.filter(function (x, i, self) {
+      return self.indexOf(x) === i;
+    });
 
-    /*Movie = Movie.filter(function (x, i, self) {
-    return self.indexOf(x) === i;
-  });*/
-  FaceAction = FaceAction.filter(function (x, i, self) {
-    return self.indexOf(x) === i;
+    for (var i in FaceAction) {
+      $('#gt').append('<option value="' + FaceAction[i] + '">' + FaceAction[i] + '</option>');
+    }
   });
-  /*for (var i in Movie) {
-  $('#video').append('<option value="' + Movie[i] + '">' + Movie[i] + '</option>');
-}*/
-for (var i in FaceAction) {
-  $('#gt').append('<option value="' + FaceAction[i] + '">' + FaceAction[i] + '</option>');
-}
-
-});
-xhr2.send();
+  xhr2.send();
 };
