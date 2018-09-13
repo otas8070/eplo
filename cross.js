@@ -2,7 +2,7 @@ $(function(){
   $('#cross').on('click',function(){
     if($("#title").val()!="" && $("#human1").val()!="" && $("#human2").val()!="" &&$("#start1").val()!="" &&$("#start2").val()!="" &&$("#end1").val()!="" &&$("#end2").val()!=""){
       //$("#cross").addClass("cross-over");
-      var url = "/emotion?human1="+$("#human1").val()+"&human2="+$("#human2").val()+"&start1="+$("#start1").val()+"&start2="+$("#start2").val()+"&end1="+$("#end1").val()+"&end2="+$("#end2").val();
+      var url = "/emox?human1="+$("#human1").val()+"&human2="+$("#human2").val()+"&start1="+$("#start1").val()+"&start2="+$("#start2").val()+"&end1="+$("#end1").val()+"&end2="+$("#end2").val()+"&now1="+$("#start1").val()+"&now2="+$("#start2").val();
       set_history();
       console.log(url);
       window.open(url, '_blank');
@@ -43,7 +43,7 @@ function show_history(){
       title.push(annocsv[i]["title"]);
     }
     for (var i in title) {
-      var url = "/emotion?human1="+human1[i]+"&human2="+human2[i]+"&start1="+start1[i]+"&start2="+start2[i]+"&end1="+end1[i]+"&end2="+end2[i];
+      var url = "/emox?human1="+human1[i]+"&human2="+human2[i]+"&start1="+start1[i]+"&start2="+start2[i]+"&end1="+end1[i]+"&end2="+end2[i]+"&now1="+start1[i]+"&now2="+start2[i];
       $('#history').append('<tr><td class="center aligned">'+title[i]+'</td><td class="center aligned">'+"#"+human1[i]+" frame:"+start1[i]+"〜"+end1[i]+'</td><td class="center aligned">'+"#"+human2[i]+" frame:"+start2[i]+"〜"+end2[i]+'</td><td class="center aligned"><a href="'+url+'">GO</td></tr>');
     }
   });
