@@ -35,6 +35,9 @@ app.get("/emotion/fau", function(req, res, next){
 app.get("/emotion/list", function(req, res, next){
     res.render("list", {});
 });
+app.get("/emox", function(req, res, next){
+    res.render("emoX", {});
+});
 
 app.get("/api/graph/:csv/:frameId", function(req, res, next){
   var filename = req.params.csv;//'data_final_all_05_01_01_full.csv';
