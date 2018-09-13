@@ -1,0 +1,15 @@
+#cross:hover {
+animation: rotate-anime 0.1s linear infinite;
+}
+@keyframes rotate-anime {
+0%  {transform: scale(1.3);}
+100%  {transform: scale(1.3);}
+}
+
+.cross-over {
+animation: rotate-anime2   0.1s linear infinite;
+}
+@keyframes rotate-anime2 {
+0%  {transform: rotate(0) scale(1.3);}
+100%  {transform: rotate(360deg) scale(1.3);}
+}

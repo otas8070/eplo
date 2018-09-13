@@ -13,12 +13,12 @@ function image_sel(human,frame){
   var video = document.getElementById('oneshot');
 
   if(human=="33"){
-    var movie_url = "emodata/"+human+"/test_0"+frame+".jpg";
+    var movie_url = "/emodata/"+human+"/test_0"+frame+".jpg";
     video.src = movie_url;
   }else{
     var NUM = frame;
     NUM = zeroPadding(NUM, 6);
-    var movie_url = "emodata/"+human+"/"+human+"_"+NUM+".jpg";
+    var movie_url = "/emodata/"+human+"/"+human+"_"+NUM+".jpg";
     video.src = movie_url;
   }
 }
