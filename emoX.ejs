@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!---- Required meta tags always come first ------>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <style>
+  .pusher {
+    padding-top:80px;
+  }
+  </style>
+  <script src="emox_js/chart.js"></script>
+  <script src="emox_js/jquery-3.3.1.min.js"></script>
+  <!--------- semantic.css 読み込み ------------>
+  <link rel="stylesheet" href="Semantic/semantic.min.css"/>
+  <script src="emox_js/popper.js"></script>
+  <!--------- semantic.js 読み込み ------------->
+  <script src="Semantic/semantic.min.js"></script>
+  <script type="text/javascript" src="emox_js/init.js"></script>
+  <script type="text/javascript" src="emox_js/graph.js"></script>
+  <script type="text/javascript" src="emox_js/graphX.js"></script>
+  <script type="text/javascript" src="emox_js/checkbox.js"></script>
+  <script type="text/javascript" src="emox_js/annocsv.js"></script>
+  <script type="text/javascript" src="emox_js/annotation.js"></script>
+  <script type="text/javascript" src="emox_js/URL取得.js"></script>
+  <script type="text/javascript" src="emox_js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="emox_js/jquery.ba-hashchange.js"></script>
+  <link rel="stylesheet" href="emox_js/jquery-ui-1.10.4.custom.min.css">
+
+  <title>e_plotter X</title>
+  <link rel="shortcut icon" href="img/emotion.ico"/>
+</head>
+
+<body style="min-width:1300px;height:auto; background:white !important;">
+
+  <!-------- サイドバーメニュー ------->
+  <div class="ui sidebar inverted vertical menu">
+    <a class="item">
+      <div class="ui toggle checkbox">
+        <input id="autoplay" name="public" type="checkbox">
+        <label>
+          <font color="white">autoplay</font>
+        </label>
+      </div>
+    </a>
+    <!-------- 条件設定 ---------->
+    <div class="item">
+      <form class="ui form">
+        <div>
+
+          <label>
+            <font color="#BBBBBB">Emotion</font>
+          </label>
+          <select id="gt" class="ui search dropdown" style="visibility:hidden">
+            <option value="none">Emotion</option>
+          </select>
+          <br>
+
+          <br>
+          <button class="ui primary button" id="siboru" type="button">Set</button>
+          <br>
+          <br>
+          <label>
+            <font color="#BBBBBB">search</font>
+          </label>
+          <select id="search" class="ui search dropdown" style="visibility:hidden"><option value="none">search</option></select><br>
+    </div>
+      </form>
+    </div>
+  </div>
+
+  <!---------- サイドバー表示ボタン ------------->
+  <div class="ui fixed menu">
+    <div class="menu">
+      <div id="js-sidebar" class="item"><i class="icon large grey content"></i>
+      </div>
+      <img src="img/logo2.png" width="250" height="65"/>
+    </div>
+  </div>
+
+  <!------------ コンテンツ本体 -------------->
+  <div class="pusher" style="margin-top:65px;padding-top:0px;">
+      <div class="ui　stackable grid">
+        <div class="ui two column grid">
+          <div class="row">
+            <div class="column">
+              <div style="margin-left:20px" >
+              <div class="parent" style="position:relative;">
+                <img id="mejirusi" src="img/16_2_15.png" style="position:absolute;">
+                <img id="oneshot" src="./emodata/33/test_086430.jpg" style="width:100%;" title="被験者画像">
+                <div id="waku" style="position:absolute; border:solid 5px #ff0000; top:0px;width:100%;"></div>
+              </div>
+              <!-------------------------info枠表示--------------------------------->
+              <div class="ui grid" style="margin-left:0px;margin-right:0px;">
+
+                <!-------------------------コマ送りボタン表示--------------------------------->
+                <div class="sixteen wide column" style="padding-bottom: 4px;background: black;padding-top: 0;">
+                  <div class="ui buttons">
+                    <button class="ui icon button" id="play">
+                      <i class="play icon"></i>
+                    </button>
+                    <button id="pose" class="ui icon button"　><i class="pause icon"></i></button>
+                  </div>
+                  <div class="ui buttons">
+                    <button class="ui icon button" id="neutral_show">
+                      <i class="child icon"></i>
+                    </button>
+                  </div>
+                  <div class="ui buttons right floated">
+                    <button class="ui icon button" id="return">
+                      <i class="angle double left icon"></i>
+                    </button>
+                    <button class="ui button grey">
+                      コマ送り
+                    </button>
+                    <button id="fast" class="ui icon button"　><i class="angle double right icon"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div style="margin-right:20px;" >
+            <div class="parent" style="position:relative;">
+              <img id="mejirusi2" src="img/16_2_15.png" style="position:absolute;">
+              <img id="oneshot2" src="./emodata/33/test_086430.jpg" style="width:100%;" title="被験者画像">
+              <div id="waku2" style="position:absolute; border:solid 5px #ff0000; top:0px;width:100%;"></div>
+            </div>
+            <!-------------------------info枠表示--------------------------------->
+            <div class="ui grid" style="margin-left:0px;margin-right:0px;">
+
+              <!-------------------------コマ送りボタン表示--------------------------------->
+              <div class="sixteen wide column" style="padding-bottom: 4px;background: black;padding-top: 0;">
+                <div class="ui buttons">
+                  <button class="ui icon button" id="play2">
+                    <i class="play icon"></i>
+                  </button>
+                  <button id="pose2" class="ui icon button"　><i class="pause icon"></i></button>
+                </div>
+                <div class="ui buttons">
+                  <button class="ui icon button" id="neutral_show2">
+                    <i class="child icon"></i>
+                  </button>
+                </div>
+                <div class="ui buttons right floated">
+                  <button class="ui icon button" id="return2">
+                    <i class="angle double left icon"></i>
+                  </button>
+                  <button class="ui button grey">
+                    コマ送り
+                  </button>
+                  <button id="fast2" class="ui icon button"　><i class="angle double right icon"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+          <!-------------------------graph表示--------------------------------->
+      <div class="ui　stackable grid">
+        <div class="ui two column grid" style="margin-left:0px;">
+          <div id="graph_div" class="ui  column" style=" position: relative; margin-left:0px;">
+            <div class = "ui top aligned inverted dimmer" style=" position: absolute; z-index: 100;">
+              <div style=" position: relative;width:100%;height:100%;">
+                <img id="neutral_img" src="./emodata/14/14_029949.jpg" style="position: absolute;z-index: 10; left:10%;width:80%;" title="被験者画像">
+                <button id="neutral_cls" class="circular ui icon button" style="right:8%;top:-1.5%;position: absolute;z-index: 100;">
+                  <i class="remove icon"></i>
+                </button>
+              </div>
+            </div>
+            <div class="ui raised segment" style="margin-top:0px;margin-right : 10px;padding:0;">
+              <div style="margin-right : 0px" >
+                <div style="width:6;heigh:auto;">
+                  <canvas id="smile"></canvas>
+                </div>
+                <div class="ui secondary segment" style="">
+                  <div class="ui grid">
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="sm" name="public" type="checkbox">
+                        <label for="sm">smile</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="bR" name="public" type="checkbox">
+                        <label>browRaise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="bF" name="public" type="checkbox">
+                        <label>browFurrow</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="nW" name="public" type="checkbox">
+                        <label>noseWrinkle</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="uL" name="public" type="checkbox">
+                        <label>upperLipRaise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="mO" name="public" type="checkbox">
+                        <label>mouseOpen</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="eC" name="public" type="checkbox">
+                        <label>eyeClosure</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="cR" name="public" type="checkbox">
+                        <label>cheekRaise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="yw" name="public" type="checkbox">
+                        <label>yawn</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="joy" name="public" type="checkbox">
+                        <label>joy</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="anger" name="public" type="checkbox">
+                        <label>anger</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="surprise" name="public" type="checkbox">
+                        <label>surprise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="valence" name="public" type="checkbox">
+                        <label>valence</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="disgust" name="public" type="checkbox">
+                        <label>disgust</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="fear" name="public" type="checkbox">
+                        <label>fear</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="happy" name="public" type="checkbox">
+                        <label>happy</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="sad" name="public" type="checkbox">
+                        <label>sad</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="neutral" name="public" type="checkbox">
+                        <label>neutral</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="graph_div2" class="ui  column" style=" position: relative; margin-right:0px;">
+            <div class = "ui top aligned inverted dimmer" style=" position: absolute; z-index: 100;">
+              <div style=" position: relative;width:100%;height:100%;">
+                <img id="neutral_img2" src="./emodata/14/14_029949.jpg" style="position: absolute;z-index: 10; left:10%;width:80%;" title="被験者画像">
+                <button id="neutral_cls2" class="circular ui icon button" style="right:8%;top:-1.5%;position: absolute;z-index: 100;">
+                  <i class="remove icon"></i>
+                </button>
+              </div>
+            </div>
+            <div class="ui raised segment" style="margin-top:0px;margin-right : 10px;padding:0;">
+              <div style="margin-right : 0px" >
+                <div style="width:6;heigh:auto;">
+                  <canvas id="smile2"></canvas>
+                </div>
+                <div class="ui secondary segment" style="">
+                  <div class="ui grid">
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="sm2" name="public" type="checkbox">
+                        <label for="sm">smile</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="bR2" name="public" type="checkbox">
+                        <label>browRaise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="bF2" name="public" type="checkbox">
+                        <label>browFurrow</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="nW2" name="public" type="checkbox">
+                        <label>noseWrinkle</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="uL2" name="public" type="checkbox">
+                        <label>upperLipRaise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="mO2" name="public" type="checkbox">
+                        <label>mouseOpen</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="eC2" name="public" type="checkbox">
+                        <label>eyeClosure</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="cR2" name="public" type="checkbox">
+                        <label>cheekRaise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="yw2" name="public" type="checkbox">
+                        <label>yawn</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="joy2" name="public" type="checkbox">
+                        <label>joy</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="anger2" name="public" type="checkbox">
+                        <label>anger</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="surprise2" name="public" type="checkbox">
+                        <label>surprise</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="valence2" name="public" type="checkbox">
+                        <label>valence</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="disgust2" name="public" type="checkbox">
+                        <label>disgust</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="fear2" name="public" type="checkbox">
+                        <label>fear</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="happy2" name="public" type="checkbox">
+                        <label>happy</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="sad2" name="public" type="checkbox">
+                        <label>sad</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="neutral2" name="public" type="checkbox">
+                        <label>neutral</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </body>
+  </html>
