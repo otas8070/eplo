@@ -383,6 +383,82 @@ console.log(smile_data2);
       image_sel2(arg.human2,arg.now2);
       plot_frame2();
     }
+    if(arg.kanjou){
+    $("#sm2").prop('checked',false);
+
+    if(arg.kanjou == "smile"){
+      $("#sm2").prop('checked',true);
+    }
+    if(arg.kanjou == "browRaise"){
+      $("#bR2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "browFurrow"){
+    $("#bF2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "noseWrinkle"){
+    $("#nW2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "upperLipRaise"){
+    $("#uL2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "mouseOpen"){
+    $("#mO2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "eyeClosure"){
+    $("#eC").prop('checked',true);
+    }
+
+    if(arg.kanjou == "cheekRaise"){
+    $("#cR2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "yawn"){
+    $("#yw2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "joy"){
+    $("#joy2").prop('checked',true);
+    }
+    if(arg.kanjou == "anger"){
+    $("#anger2").prop('checked',true);
+    }
+    if(arg.kanjou == "surprise"){
+    $("#surprise2").prop('checked',true);
+    }
+    if(arg.kanjou == "valence"){
+    $("#valence2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "disgust"){
+    $("#disgust2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "valence"){
+    $("#valence2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "fear"){
+    $("#fear2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "happy"){
+    $("#happy2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "sad"){
+    $("#sad2").prop('checked',true);
+    }
+
+    if(arg.kanjou == "neutral"){
+    $("#neutral2").prop('checked',true);
+  }
+  set_chkbox2graph2();
+  }
 
     canvas2.addEventListener('click', function(event2) {
       let item2 = smile_chart2.getElementAtEvent(event2);
