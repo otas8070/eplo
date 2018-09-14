@@ -18,5 +18,7 @@ $(function(){
 })
 
 if(arg.now1){
-$(window).hashchange();}
+$(window).hashchange();
+}
+
 });

@@ -255,7 +255,6 @@ var happy_data;
 var sad_data;
 var neutral_data;
 
-
 var frame = [];
 var smile = [];
 var browRaise = [];
@@ -390,7 +389,7 @@ function plot_dmcdata(human,Start,End,Frag){
     var tmp_graph = make_graph(frame,datagraph);
     smile_data = tmp_graph[0];
     canvas = document.getElementById('smile');
-console.log(smile_data);
+    console.log(smile_data);
     if( smile_chart ){ smile_chart.destroy(); }
     smile_chart = new Chart(canvas, {
       type: 'line',  //グラフの種類
@@ -414,6 +413,85 @@ console.log(smile_data);
       plot_frame();
       console.log(arg.human1)
     }
+
+    if(arg.kanjou){
+    $("#sm").prop('checked',false);
+
+    if(arg.kanjou == "smile"){
+      $("#sm").prop('checked',true);
+    }
+    if(arg.kanjou == "browRaise"){
+      $("#bR").prop('checked',true);
+    }
+
+    if(arg.kanjou == "browFurrow"){
+    $("#bF").prop('checked',true);
+    }
+
+    if(arg.kanjou == "noseWrinkle"){
+    $("#nW").prop('checked',true);
+    }
+
+    if(arg.kanjou == "upperLipRaise"){
+    $("#uL").prop('checked',true);
+    }
+
+    if(arg.kanjou == "mouseOpen"){
+    $("#mO").prop('checked',true);
+    }
+
+    if(arg.kanjou == "eyeClosure"){
+    $("#eC").prop('checked',true);
+    }
+
+    if(arg.kanjou == "cheekRaise"){
+    $("#cR").prop('checked',true);
+    }
+
+    if(arg.kanjou == "yawn"){
+    $("#yw").prop('checked',true);
+    }
+
+    if(arg.kanjou == "joy"){
+    $("#joy").prop('checked',true);
+    }
+
+    if(arg.kanjou == "anger"){
+    $("#anger").prop('checked',true);
+    }
+
+    if(arg.kanjou == "surprise"){
+    $("#surprise").prop('checked',true);
+    }
+    if(arg.kanjou == "valence"){
+    $("#valence").prop('checked',true);
+    }
+
+    if(arg.kanjou == "disgust"){
+    $("#disgust").prop('checked',true);
+    }
+
+    if(arg.kanjou == "valence"){
+    $("#valence").prop('checked',true);
+    }
+
+    if(arg.kanjou == "fear"){
+    $("#fear").prop('checked',true);
+    }
+
+    if(arg.kanjou == "happy"){
+    $("#happy").prop('checked',true);
+    }
+
+    if(arg.kanjou == "sad"){
+    $("#sad").prop('checked',true);
+    }
+
+    if(arg.kanjou == "neutral"){
+    $("#neutral").prop('checked',true);
+  }
+  set_chkbox2graph();
+  }
 
     canvas.addEventListener('click', function(event) {
       let item = smile_chart.getElementAtEvent(event);
@@ -543,7 +621,6 @@ function set_chkbox2graph(){
   if($("#neutral").prop("checked")){
     datagraph = make_dataset(datagraph,neutral,"rgba(50,255,18,1.0)","neutral");
   }
-
 
   //描画
   var tmp_graph = make_graph(frame,datagraph);

@@ -13,7 +13,6 @@ $(function(){
   $('.nowflur').dimmer('hide');
   //dimmerの削除
   plot_dmcdata(arg.human,arg.Start,arg.End,1);
-  //plot_dmcdata2(arg.human2,arg.Start2,arg.End2,1);
   //画像、グラフの描写
 })
 
