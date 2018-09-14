@@ -6,6 +6,7 @@ $(function(){
     $('#graph_div').dimmer('hide');
     flg_n = 0;
   });
+  //ニュートラルボタンを押したら
   $('#neutral_show').click(function() {
     if(nowhuman=="-1"){
       alert("Plz Select Emotional Video :)");
@@ -29,6 +30,14 @@ function change_neutral_img(){
   if(nowhuman=="14"){
     var neu_frame = "029949";
     var movie_url = "emodata/"+nowhuman+"/"+nowhuman+"_"+neu_frame+".jpg";
+    video.src = movie_url;
+  }else if(nowhuman=="26"){
+    var neu_frame = "037830";
+    var movie_url = "emodata/"+nowhuman+"/"+nowhuman+"_"+neu_frame+".jpg";
+    video.src = movie_url;
+  }else if(nowhuman=="33"){
+    var neu_frame = "036255";
+    var movie_url = "emodata/"+nowhuman+"/"+"test_"+neu_frame+".jpg";
     video.src = movie_url;
   }else{
 

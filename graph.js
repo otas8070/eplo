@@ -30,6 +30,7 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
     var chart = this.chart;
     var ctx = chart.chart.ctx;
     var index = chart.config.data.lineAtIndex;
+    var index2 = chart.config.data.lineAtIndex2;
     if (index){
       var xaxis = chart.scales['x-axis-0'];
       var yaxis = chart.scales['y-axis-0'];
@@ -42,6 +43,18 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
       ctx.stroke();
       ctx.restore();
     }
+    if (index2){
+      var xaxis = chart.scales['x-axis-0'];
+      var yaxis = chart.scales['y-axis-0'];
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(xaxis.getPixelForValue(undefined, index2), yaxis.top);
+      ctx.strokeStyle = '#00ff00';
+      ctx.lineWidth = 1;
+      ctx.lineTo(xaxis.getPixelForValue(undefined, index2), yaxis.bottom);
+      ctx.stroke();
+      ctx.restore();
+    }
   }
 });
 
@@ -49,6 +62,7 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
 $(function(){
   $("#sm").click(function(){set_chkbox2graph();});
   $("#bR").click(function(){set_chkbox2graph();});
+  $("#bF").click(function(){set_chkbox2graph();});
   $("#nW").click(function(){set_chkbox2graph();});
   $("#uL").click(function(){set_chkbox2graph();});
   $("#mO").click(function(){set_chkbox2graph();});
@@ -157,6 +171,7 @@ $('#autoplay').click(function(){
 
 $("#sm").prop('checked',true);
 $("#bR").prop('checked',false);
+$("#bF").prop('checked',false);
 $("#nW").prop('checked',false);
 $("#uL").prop('checked',false);
 $("#mO").prop('checked',false);
@@ -180,11 +195,15 @@ function plot_frame(){
   if( smile_chart ){
     // 垂直線の描画
     smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
+    smile_data.lineAtIndex2 = meji;
+    meji_Hi = meji + 1;
+    meji_Low = meji - 1;
     smile_chart.update();
     set_lavel_data(nowframe - constSframe);
 
+
 　//アノテーション用目印
-  if(meji>=0){
+  if((nowframe - constSframe) <= meji_Hi&&(nowframe - constSframe) >= meji_Low){
     $("#mejirusi").show();
     $("#waku").show();
     var waku_he = $('#oneshot').height();
@@ -198,6 +217,8 @@ function plot_frame(){
 
 var canvas;
 var meji;
+var meji_Hi;
+var meji_Low;
 var smile_chart;
 var browRaise_chart;
 var noseWrinkle_chart;
@@ -218,6 +239,7 @@ var neutral_chart;
 
 var smile_data;
 var browRaise_data;
+var browFurrow_data;
 var noseWrinkle_data;
 var upperLipRaise_data;
 var mouseOpen_data;
@@ -238,6 +260,7 @@ var neutral_data;
 var frame = [];
 var smile = [];
 var browRaise = [];
+var browFurrow = [];
 var noseWrinkle = [];
 var upperLipRaise = [];
 var mouseOpen = [];
@@ -323,6 +346,7 @@ function plot_dmcdata(human,Start,End){
     frame = [];
     smile = [];
     browRaise = [];
+    browFurrow = [];
     noseWrinkle = [];
     upperLipRaise = [];
     mouseOpen = [];
@@ -339,12 +363,11 @@ function plot_dmcdata(human,Start,End){
     sad = [];
     neutral = [];
 
-
-
     for(var i in photoList){
       frame.push(photoList[i]["frame"]);
       smile.push(photoList[i]["smile"]);
       browRaise.push(photoList[i]["browRaise"]);
+      browFurrow.push(photoList[i]["browFurrow"]);
       noseWrinkle.push(photoList[i]["noseWrinkle"]);
       upperLipRaise.push(photoList[i]["upperLipRaise"]);
       mouseOpen.push(photoList[i]["mouseOpen"]);
@@ -380,7 +403,6 @@ function plot_dmcdata(human,Start,End){
 
     console.log(sel_result);
     image_sel(sel_result[$('#search').val()]["human"],sel_result[$('#search').val()]["Start"]);
-    //movie_sel(sel_result[$('#search').val()]["video"],sel_result[$('#search').val()]["Chapter"],sel_result[$('#search').val()]["GT"]);
     nowframe = parseInt(sel_result[$('#search').val()]["Start"]);
     constSframe = nowframe;
     constEframe = sel_result[$('#search').val()]["End"];
@@ -389,16 +411,21 @@ function plot_dmcdata(human,Start,End){
 
     canvas.addEventListener('click', function(event) {
       let item = smile_chart.getElementAtEvent(event);
-
       if (item.length == 0) {
+        smile_chart.scale.selectedIndex = smile_chart.datasets[0].points.indexOf(points[0])
+        smile_chart.update();
         console.log('no element found.')
         return;
       }
-
       item = item[0];
       let data = item._index;
-      alert(data);
+      meji = item._index;
       console.log(item);
+      smile_data.lineAtIndex = nowframe - constSframe;//parseInt(nowframe)-1;
+      smile_data.lineAtIndex2 = meji;
+      meji_Hi = meji + 1;
+      meji_Low = meji - 1;
+      smile_chart.update();
     });
 
   });
@@ -408,6 +435,7 @@ function plot_dmcdata(human,Start,End){
 function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(smile[nowframe_num]),"#smile_val","#smile_tr");
   chk_thre(parseFloat(browRaise[nowframe_num]),"#browRaise_val","#browRaise_tr");
+  chk_thre(parseFloat(browFurrow[nowframe_num]),"#browFurrow_val","#browFurrow_tr");
   chk_thre(parseFloat(noseWrinkle[nowframe_num]),"#noseWrinkle_val","#noseWrinkle_tr");
   chk_thre(parseFloat(upperLipRaise[nowframe_num]),"#upperLipRaise_val","#upperLipRaise_tr");
   chk_thre(parseFloat(mouseOpen[nowframe_num]),"#mouseOpen_val","#mouseOpen_tr");
@@ -423,8 +451,6 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(happy[nowframe_num]),"#happy_val","#happy_tr");
   chk_thre(parseFloat(sad[nowframe_num]),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]),"#neutral_val","#neutral_tr");
-  meji=smile[nowframe_num]; //アノテーション用目印
-
 };
 
 function chk_thre(val,id,id_tr){
@@ -446,6 +472,10 @@ function set_chkbox2graph(){
   //--------------browRaise---------------
   if($("#bR").prop("checked")){
     datagraph = make_dataset(datagraph,browRaise,"rgba(126,83,34,1.0)","browRaise");
+  }
+  //--------------browFurrow---------------
+  if($("#bF").prop("checked")){
+    datagraph = make_dataset(datagraph,browFurrow,"rgba(200,83,200,1.0)","browFurrow");
   }
   //--------------noseWrinkle---------------
   if($("#nW").prop("checked")){
@@ -507,7 +537,6 @@ function set_chkbox2graph(){
   if($("#neutral").prop("checked")){
     datagraph = make_dataset(datagraph,neutral,"rgba(50,255,18,1.0)","neutral");
   }
-
 
 
   //描画
