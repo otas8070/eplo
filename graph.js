@@ -399,10 +399,10 @@ function plot_dmcdata(human,Start,End,Frag){
     });
 
     image_sel(human,Start);
-    constSframe = Start;
-    constEframe = End;
+    constSframe = parseInt(Start);
+    constEframe = parseInt(End);
     nowframe = parseInt(Start);
-    nowhuman = human;
+    nowhuman = parseInt(human);
     set_lavel_data(nowframe - constSframe);
 
     if(Frag==1){
