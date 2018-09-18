@@ -78,6 +78,13 @@ $(function(){
   $("#happy").click(function(){set_chkbox2graph();});
   $("#sad").click(function(){set_chkbox2graph();});
   $("#neutral").click(function(){set_chkbox2graph();});
+  $("#angerVGG").click(function(){set_chkbox2graph();});
+  $("#surpriseVGG").click(function(){set_chkbox2graph();});
+  $("#disgustVGG").click(function(){set_chkbox2graph();});
+  $("#fearVGG").click(function(){set_chkbox2graph();});
+  $("#happyVGG").click(function(){set_chkbox2graph();});
+  $("#sadVGG").click(function(){set_chkbox2graph();});
+  $("#neutralVGG").click(function(){set_chkbox2graph();});
 
   var countup = function(){
     if(constEframe>nowframe){
@@ -187,6 +194,13 @@ $("#fear").prop('checked',false);
 $("#happy").prop('checked',false);
 $("#sad").prop('checked',false);
 $("#neutral").prop('checked',false);
+$("#angerVGG").prop('checked',false);
+$("#surpriseVGG").prop('checked',false);
+$("#disgustVGG").prop('checked',false);
+$("#fearVGG").prop('checked',false);
+$("#happyVGG").prop('checked',false);
+$("#sadVGG").prop('checked',false);
+$("#neutralVGG").prop('checked',false);
 
 $("#mejirusi").hide();
 $("#waku").hide();
@@ -235,6 +249,13 @@ var fear_chart;
 var happy_chart;
 var sad_chart;
 var neutral_chart;
+var angerVGG_chart;
+var surpriseVGG_chart;
+var disgustVGG_chart;
+var fearVGG_chart;
+var happyVGG_chart;
+var sadVGG_chart;
+var neutralVGG_chart;
 
 var smile_data;
 var browRaise_data;
@@ -254,7 +275,13 @@ var fear_data;
 var happy_data;
 var sad_data;
 var neutral_data;
-
+var angerVGG_data;
+var surpriseVGG_data;
+var disgustVGG_data;
+var fearVGG_data;
+var happyVGG_data;
+var sadVGG_data;
+var neutralVGG_data;
 
 var frame = [];
 var smile = [];
@@ -275,6 +302,13 @@ var fear = [];
 var happy = [];
 var sad = [];
 var neutral = [];
+var angerVGG = [];
+var surpriseVGG = [];
+var disgustVGG = [];
+var fearVGG = [];
+var happyVGG = [];
+var sadVGG = [];
+var neutralVGG = [];
 
 var nowframe;
 var nowhuman = "-1";
@@ -360,6 +394,13 @@ function plot_dmcdata(human,Start,End,Frag){
     happy = [];
     sad = [];
     neutral = [];
+    angerVGG = [];
+    surpriseVGG = [];
+    disgustVGG = [];
+    fearVGG = [];
+    happyVGG = [];
+    sadVGG = [];
+    neutralVGG = [];
 
     for(var i in photoList){
       frame.push(photoList[i]["frame"]);
@@ -381,6 +422,13 @@ function plot_dmcdata(human,Start,End,Frag){
       happy.push(photoList[i]["happy"]);
       sad.push(photoList[i]["sad"]);
       neutral.push(photoList[i]["neutral"]);
+      angerVGG.push(photoList[i]["angerVGG"]);
+      surpriseVGG.push(photoList[i]["surpriseVGG"]);
+      disgustVGG.push(photoList[i]["disgustVGG"]);
+      fearVGG.push(photoList[i]["fearVGG"]);
+      happyVGG.push(photoList[i]["happyVGG"]);
+      sadVGG.push(photoList[i]["sadVGG"]);
+      neutralVGG.push(photoList[i]["neutralVGG"]);
     }
 
     datagraph = [];
@@ -456,6 +504,13 @@ function set_lavel_data(nowframe_num){
   chk_thre(parseFloat(happy[nowframe_num]),"#happy_val","#happy_tr");
   chk_thre(parseFloat(sad[nowframe_num]),"#sad_val","#sad_tr");
   chk_thre(parseFloat(neutral[nowframe_num]),"#neutral_val","#neutral_tr");
+  chk_thre(parseFloat(angerVGG[nowframe_num]),"#angerVGG_val","#angerVGG_tr");
+  chk_thre(parseFloat(surpriseVGG[nowframe_num]),"#surpriseVGG_val","#surpriseVGG_tr");
+  chk_thre(parseFloat(disgustVGG[nowframe_num]),"#disgustVGG_val","#disgustVGG_tr");
+  chk_thre(parseFloat(fearVGG[nowframe_num]),"#fearVGG_val","#fearVGG_tr");
+  chk_thre(parseFloat(happyVGG[nowframe_num]),"#happyVGG_val","#happyVGG_tr");
+  chk_thre(parseFloat(sadVGG[nowframe_num]),"#sadVGG_val","#sadVGG_tr");
+  chk_thre(parseFloat(neutralVGG[nowframe_num]),"#neutralVGG_val","#neutralVGG_tr");
 };
 
 function chk_thre(val,id,id_tr){
@@ -534,15 +589,42 @@ function set_chkbox2graph(){
   if($("#happy").prop("checked")){
     datagraph = make_dataset(datagraph,happy,"rgba(255,0,0,1.0)","happy");
   }
-  //--------------sad---------------
+  //--------------sad_VGG---------------
   if($("#sad").prop("checked")){
     datagraph = make_dataset(datagraph,sad,"rgba(28,5,255,1.0)","sad");
   }
-  //--------------neutral---------------
+  //--------------neutral_VGG---------------
   if($("#neutral").prop("checked")){
     datagraph = make_dataset(datagraph,neutral,"rgba(50,255,18,1.0)","neutral");
   }
-
+  //--------------anger_VGG---------------
+  if($("#angerVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,angerVGG,"rgba(255,195,76,1.0)","angerVGG");
+  }
+  //--------------surprise_VGG---------------
+  if($("#surpriseVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,surpriseVGG,"rgba(103,228,126,1.0)","surpriseVGG");
+  }
+  //--------------disgust_VGG---------------
+  if($("#disgustVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,disgustVGG,"rgba(226,159,167,1.0)","disgustVGG");
+  }
+  //--------------fear_VGG---------------
+  if($("#fearVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,fearVGG,"rgba(114,140,12,1.0)","fearVGG");
+  }
+  //--------------happy_VGG---------------
+  if($("#happyVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,happyVGG,"rgba(255,0,0,1.0)","happyVGG");
+  }
+  //--------------sad_VGG---------------
+  if($("#sadVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,sadVGG,"rgba(28,5,255,1.0)","sadVGG");
+  }
+  //--------------neutral---------------
+  if($("#neutralVGG").prop("checked")){
+    datagraph = make_dataset(datagraph,neutralVGG,"rgba(50,255,18,1.0)","neutralVGG");
+  }
 
   //描画
   var tmp_graph = make_graph(frame,datagraph);
