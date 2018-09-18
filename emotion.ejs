@@ -10,23 +10,25 @@
     padding-top:80px;
   }
   </style>
-  <script src="/emo_js/chart.js"></script>
-  <script src="/emo_js/jquery-3.3.1.min.js"></script>
+  <script src="emo_js/chart.js"></script>
+  <script src="emo_js/jquery-3.3.1.min.js"></script>
   <!--------- semantic.css 読み込み ------------>
-  <link rel="stylesheet" href="/Semantic/semantic.min.css"/>
-  <script src="/emo_js/popper.js"></script>
+  <link rel="stylesheet" href="Semantic/semantic.min.css"/>
+  <script src="emo_js/popper.js"></script>
   <!--------- semantic.js 読み込み ------------->
-  <script src="/Semantic/semantic.min.js"></script>
-  <script type="text/javascript" src="/emo_js/init.js"></script>
-  <script type="text/javascript" src="/emo_js/graph.js"></script>
-  <script type="text/javascript" src="/emo_js/checkbox.js"></script>
-  <script type="text/javascript" src="/emo_js/annocsv.js"></script>
-  <script type="text/javascript" src="/emo_js/annotation.js"></script>
-  <script type="text/javascript" src="/emo_js/jquery-ui-1.10.4.custom.min.js"></script>
-  <link rel="stylesheet" href="/emo_js/jquery-ui-1.10.4.custom.min.css">
+  <script src="Semantic/semantic.min.js"></script>
+  <script type="text/javascript" src="emo_js/init.js"></script>
+  <script type="text/javascript" src="emo_js/graph.js"></script>
+  <script type="text/javascript" src="emo_js/checkbox.js"></script>
+  <script type="text/javascript" src="emo_js/annocsv.js"></script>
+  <script type="text/javascript" src="emo_js/annotation.js"></script>
+  <script type="text/javascript" src="emo_js/URL取得.js"></script>
+  <script type="text/javascript" src="emo_js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="emo_js/jquery.ba-hashchange.js"></script>
+  <link rel="stylesheet" href="emo_js/jquery-ui-1.10.4.custom.min.css">
 
   <title>e_plotter</title>
-  <link rel="shortcut icon" href="/img/emotion.ico"/>
+  <link rel="shortcut icon" href="img/emotion.ico"/>
 </head>
 
 <body style="min-width:1300px;height:auto; background:white !important;">
@@ -85,7 +87,7 @@
     <div class="menu">
       <div id="js-sidebar" class="item"><i class="icon large grey content"></i>
       </div>
-      <img src="/img/logo2.png" width="250" height="65"/>
+      <img src="img/logo2.png" width="250" height="65"/>
     </div>
   </div>
 
@@ -95,7 +97,7 @@
       <div class="ui inverted dimmer" style="z-index:99;">
         <div class="ui card" style="width:30%;">
           <div class="image">
-            <img src="/img/logo2.png">
+            <img src="img/logo2.png">
           </div>
           <div class="content">
             <div class="meta">
@@ -123,8 +125,8 @@
                 <video controls id="mv" src="mov/out2.mp4" type="video/mp4" controls autobuffer style="width:100%;"></video>
               -->
               <div class="parent" style="position:relative;">
-                <img id="mejirusi" src="/img/16_2_15.png" style="position:absolute;">
-                <img id="oneshot" src="/emodata/33/test_086430.jpg" style="width:100%;" title="被験者画像">
+                <img id="mejirusi" src="img/16_2_15.png" style="position:absolute;">
+                <img id="oneshot" src="./emodata/33/test_086430.jpg" style="width:100%;" title="被験者画像">
                 <div id="waku" style="position:absolute; border:solid 5px #ff0000; top:0px;width:100%;"></div>
               </div>
               <!-------------------------info枠表示--------------------------------->
@@ -174,7 +176,7 @@
           <div id="graph_div" class="ui  column" style=" position: relative;">
             <div class = "ui top aligned inverted dimmer" style=" position: absolute; z-index: 100;">
               <div style=" position: relative;width:100%;height:100%;">
-                <img id="neutral_img" src="/emodata/14/14_029949.jpg" style="position: absolute;z-index: 10; left:10%;width:80%;" title="被験者画像">
+                <img id="neutral_img" src="./emodata/14/14_029949.jpg" style="position: absolute;z-index: 10; left:10%;width:80%;" title="被験者画像">
                 <button id="neutral_cls" class="circular ui icon button" style="right:8%;top:-1.5%;position: absolute;z-index: 100;">
                   <i class="remove icon"></i>
                 </button>
@@ -295,6 +297,48 @@
                         <label>neutral</label>
                       </div>
                     </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="angerVGG" name="public" type="checkbox">
+                        <label>anger_VGG</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="surpriseVGG" name="public" type="checkbox">
+                        <label>surprise_VGG</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="disgustVGG" name="public" type="checkbox">
+                        <label>disgust_VGG</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="fearVGG" name="public" type="checkbox">
+                        <label>fear_VGG</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="happyVGG" name="public" type="checkbox">
+                        <label>happy_VGG</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="sadVGG" name="public" type="checkbox">
+                        <label>sad_VGG</label>
+                      </div>
+                    </div>
+                    <div class="four wide column" style="padding-top:5px; padding-bottom:5px;">
+                      <div class="ui toggle checkbox">
+                        <input id="neutralVGG" name="public" type="checkbox">
+                        <label>neutral_VGG</label>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -329,13 +373,6 @@
                         <td style="padding: 5px 11px;">mouseOpen</td>
                         <td id="mouseOpen_val" style="padding: 5px 11px;">NaN</td>
                       </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-                <div class="column">
-                  <table class="ui unstackable celled table">
-                    <tbody>
                       <tr id="eyeClosure_tr" class="">
                         <td style="padding: 5px 11px;">eyeClosure</td>
                         <td id="eyeClosure_val" style="padding: 5px 11px;">NaN</td>
@@ -348,6 +385,12 @@
                         <td style="padding: 5px 11px;">yawn</td>
                         <td id="yawn_val" style="padding: 5px 11px;">NaN</td>
                       </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="column">
+                  <table class="ui unstackable celled table">
+                    <tbody>
                       <tr id="joy_tr">
                         <td style="padding: 5px 11px;">joy</td>
                         <td id="joy_val" style="padding: 5px 11px;">NaN</td>
@@ -360,13 +403,6 @@
                         <td style="padding: 5px 11px;">surprise</td>
                         <td id="surprise_val" style="padding: 5px 11px;">NaN</td>
                       </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-                <div class="column">
-                  <table class="ui unstackable celled table">
-                    <tbody>
                       <tr id="valence_tr" class="">
                         <td style="padding: 5px 11px;">valence</td>
                         <td id="valence_val" style="padding: 5px 11px;">NaN</td>
@@ -390,6 +426,40 @@
                       <tr id="neutral_tr" class="">
                         <td style="padding: 5px 11px;">neutral</td>
                         <td id="neutral_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="column">
+                  <table class="ui unstackable celled table">
+                    <tbody>
+                      <tr id="angerVGG_tr" class="">
+                        <td style="padding: 5px 11px;">anger_VGG</td>
+                        <td id="angerVGG_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                      <tr id="surpriseVGG_tr">
+                        <td style="padding: 5px 11px;">surprise_VGG</td>
+                        <td id="surpriseVGG_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                      <tr id="disgustVGG_tr">
+                        <td style="padding: 5px 11px;">disgust_VGG</td>
+                        <td id="disgustVGG_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                      <tr id="fearVGG_tr" class="">
+                        <td style="padding: 5px 11px;">fear_VGG</td>
+                        <td id="fearVGG_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                      <tr id="happyVGG_tr">
+                        <td style="padding: 5px 11px;">happy_VGG</td>
+                        <td id="happyVGG_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                      <tr id="sadVGG_tr" class="">
+                        <td style="padding: 5px 11px;">sad_VGG</td>
+                        <td id="sad_VGG_val" style="padding: 5px 11px;">NaN</td>
+                      </tr>
+                      <tr id="neutralVGG_tr" class="">
+                        <td style="padding: 5px 11px;">neutral_VGG</td>
+                        <td id="neutralVGG_val" style="padding: 5px 11px;">NaN</td>
                       </tr>
                     </tbody>
                   </table>
